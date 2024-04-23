@@ -40,6 +40,7 @@ const cities = ref([
           </span>
         </figure>
         <Dropdown v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a User" class="w-full md:w-14rem" />
+        <Button icon="pi pi-times" label="" severity="equip-closebtn" aria-label="Cancel" class="rounded-circle" />
       </div>
 
     </div>

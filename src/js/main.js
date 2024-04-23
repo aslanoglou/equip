@@ -4,7 +4,7 @@ import '../scss/styles.scss'
 import { createApp } from 'vue'
 import App from '../App.vue'
 
-import 'primevue/resources/themes/lara-dark-teal/theme.css'
+import 'primevue/resources/themes/aura-light-blue/theme.css'
 
 import PrimeVue from 'primevue/config'
 

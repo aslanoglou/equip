@@ -1,6 +1,8 @@
 [data-bs-theme="generate-lessons"] {
   --Secondary-400: #0090DA;
   --Grey-scale-1200: #2D2D2D;
+  --Grey-scale-200: #F5F5F5;
+  --Grey-scale-400: #E0E0E0;
 }
 .equip{
   font-family: Arial, sans-serif;
@@ -17,6 +19,7 @@
   &__wrapper{
     padding: 16px;
     flex: auto;
+    background-color: var(--Grey-scale-200);
   }
   &__header{
     &__title{
@@ -34,26 +37,16 @@
           font-size: 20px;
         }
       }
-      .p-dropdown {
-        border: none;
-        .p-inputtext{
-          border-radius: 0;
-        }
-        .p-dropdown-label.p-placeholder{
-          color: var(--Grey-scale-1200);
-          background-color: white;
-        }
-        .p-dropdown-trigger {
-          background-color: white;
-          color: var(--Grey-scale-1200);
-          border-radius:0;
-        }
-      }
     }
   }
-
-  .p-dropdown-panel{
-    background-color:white!important;
-    color:black!important;
-  }
+}
+.p-dropdown-items{
+  padding-left:0!important;
+}
+.p-button-equip-closebtn{
+  border: 1px solid var(--Grey-scale-400);
+  width:40px;
+  height:40px;
+  background-color:white;
+  color: var(--Grey-scale-1200);
 }
