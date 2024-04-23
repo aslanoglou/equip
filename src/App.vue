@@ -6,11 +6,11 @@ const value = ref(null);
 
 const selectedCity = ref();
 const cities = ref([
-  { name: 'New York', code: 'NY' },
-  { name: 'Rome', code: 'RM' },
-  { name: 'London', code: 'LDN' },
-  { name: 'Istanbul', code: 'IST' },
-  { name: 'Paris', code: 'PRS' }
+  {name: 'New York', code: 'NY'},
+  {name: 'Rome', code: 'RM'},
+  {name: 'London', code: 'LDN'},
+  {name: 'Istanbul', code: 'IST'},
+  {name: 'Paris', code: 'PRS'}
 ]);
 
 
@@ -28,7 +28,7 @@ const cities = ref([
       <img src="./assets/s-sidebar.png" width="57" height="56" alt="">
     </a>
   </div>
-  <div class="equip__wrapper">
+  <div class="equip__wrapper d-flex flex-column">
     <div class="equip__header d-flex justify-content-between align-items-center">
       <h1 class="equip__header__title mb-3">
         Generate lessons
@@ -39,9 +39,32 @@ const cities = ref([
             JS
           </span>
         </figure>
-        <Dropdown v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a User" class="w-full md:w-14rem" />
-        <Button icon="pi pi-times" label="" severity="equip-closebtn" aria-label="Cancel" class="rounded-circle" />
+        <Dropdown v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a User"
+                  class="w-full md:w-14rem"/>
+        <Button icon="pi pi-times" label="" severity="equip-closebtn" aria-label="Cancel" class="rounded-circle"/>
       </div>
+    </div>
+    <nav class="equip__nav d-flex justify-content-between">
+      <div class="d-flex align-items-center is-active">
+        <a href="#">Upload template library</a>
+      </div>
+      <div class="d-flex align-items-center">
+        <a href="#">Upload spreadsheet</a>
+      </div>
+      <div class="d-flex align-items-center">
+        <a href="#">Select content</a>
+      </div>
+      <div class="d-flex align-items-center">
+        <a href="#">Select lessons</a>
+      </div>
+      <div class="d-flex align-items-center">
+        <a href="#">Generate lessons</a>
+      </div>
+      <div class="d-flex align-items-center">
+        <a href="#">Summary</a>
+      </div>
+    </nav>
+    <div class="equip__content">
 
     </div>
   </div>
