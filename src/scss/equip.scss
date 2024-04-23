@@ -1,5 +1,6 @@
 [data-bs-theme="generate-lessons"] {
   --Secondary-400: #0090DA;
+  --Secondary-400-rgb: 0, 144, 218;
   --Grey-scale-1200: #2D2D2D;
   --Grey-scale-200: #F5F5F5;
   --Grey-scale-400: #E0E0E0;
@@ -43,13 +44,13 @@
   }
   &__content{
     background-color: white;
-    box-shadow: 2px 2px 4px 0px rgba(black, 0.25);
+    box-shadow: 2px 2px 4px 0 rgba(black, 0.25);
     flex: auto;
   }
   &__nav{
     counter-reset: my-awesome-counter;
     background-color: white;
-    box-shadow: 2px 2px 4px 0px rgba(black, 0.25);
+    box-shadow: 2px 2px 4px 0 rgba(black, 0.25);
     margin-bottom:16px;
     & > div {
       counter-increment: my-awesome-counter;
@@ -71,12 +72,13 @@
         align-items:center;
         color: var(--Grey-scale-800);
         text-decoration: none;
+        line-height: 1;
         &:before{
-
           background-color:var(--Grey-scale-200);
           color:var(--Grey-scale-800);
           content: counter(my-awesome-counter);
           border-radius: 50%;
+          flex-shrink: 0;
           width:24px;
           height:24px;
           display:flex;
@@ -94,6 +96,13 @@
           }
         }
       }
+    }
+  }
+  .btn{
+    &.btn-primary{
+      --bs-btn-bg: var(--Secondary-400);
+      --bs-btn-border-color: var(--Secondary-400);
+      --bs-btn-hover-bg: rgba(var(--Secondary-400-rgb), 0.5); /* Corrected line */
     }
   }
 }
