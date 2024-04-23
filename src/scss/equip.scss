@@ -1,0 +1,59 @@
+[data-bs-theme="generate-lessons"] {
+  --Secondary-400: #0090DA;
+  --Grey-scale-1200: #2D2D2D;
+}
+.equip{
+  font-family: Arial, sans-serif;
+  &__sidebar{
+    flex: 0 0 74px;
+    background-color: var(--Secondary-400);
+    &__logo{
+      margin-bottom:45px;
+    }
+    &__hut{
+      margin-bottom:42px;
+    }
+  }
+  &__wrapper{
+    padding: 16px;
+    flex: auto;
+  }
+  &__header{
+    &__title{
+      font-size: 26px;
+      font-weight: 400;
+    }
+    &__right-col{
+      figure{
+        width: 44px;
+        height: 44px;
+        background-color: var(--Secondary-400);
+        border-radius: 50%;
+        span{
+          color: white;
+          font-size: 20px;
+        }
+      }
+      .p-dropdown {
+        border: none;
+        .p-inputtext{
+          border-radius: 0;
+        }
+        .p-dropdown-label.p-placeholder{
+          color: var(--Grey-scale-1200);
+          background-color: white;
+        }
+        .p-dropdown-trigger {
+          background-color: white;
+          color: var(--Grey-scale-1200);
+          border-radius:0;
+        }
+      }
+    }
+  }
+
+  .p-dropdown-panel{
+    background-color:white!important;
+    color:black!important;
+  }
+}
