@@ -1,4 +1,5 @@
 import '../scss/styles.scss'
+import * as bootstrap from 'bootstrap';
 
 import { createApp } from 'vue'
 import App from '../App.vue'
@@ -19,3 +20,11 @@ app.component('Button', Button)
 app.component('InputText', InputText)
 app.component('FileUpload', FileUpload);
 app.mount('#app')
+
+
+var myModal = document.getElementById('myModal')
+var myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', function () {
+    myInput.focus()
+})
