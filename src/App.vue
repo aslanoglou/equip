@@ -110,12 +110,12 @@ const cities = ref([
                 <div class="d-flex flex-column justify-content-between align-items-center gap-2">
                   <div class="d-flex gap-2">
                     <Button @click="chooseCallback()" class="btn btn-outline-primary d-flex "><span class="pi pi-upload me-2"></span><span class="text-nowrap">Choose file</span></Button>
-                    <Button @click="uploadEvent(uploadCallback)" severity="success"
-                            :disabled="!files || files.length === 0" class="btn btn-outline-success text-nowrap">Upload Files
-                    </Button>
-                    <Button @click="clearCallback()" severity="danger" :disabled="!files || files.length === 0"
-                            class="btn btn-outline-danger text-nowrap">Remove Files
-                    </Button>
+<!--                    <Button @click="uploadEvent(uploadCallback)" severity="success"-->
+<!--                            :disabled="!files || files.length === 0" class="btn btn-outline-success text-nowrap">Upload Files-->
+<!--                    </Button>-->
+<!--                    <Button @click="clearCallback()" severity="danger" :disabled="!files || files.length === 0"-->
+<!--                            class="btn btn-outline-danger text-nowrap">Remove Files-->
+<!--                    </Button>-->
                   </div>
 
                 </div>
@@ -154,9 +154,16 @@ const cities = ref([
                   </div>
                 </div>
                 <!--/File Details-->
+                <!--Error text-->
                 <div class="text-danger d-flex align-items-center mt-2"><i
                     class="pi pi-exclamation-circle me-2"></i><span>This file type is not supported. Please try again with .docx format.</span>
                 </div>
+                <!--/Error text-->
+
+
+
+
+
 
                 <div v-if="files.length > 0">
                   <h5>Pending</h5>
