@@ -14,6 +14,8 @@ const cities = ref([
 ]);
 
 
+
+
 </script>
 
 <template>
@@ -101,7 +103,9 @@ const cities = ref([
         <!--Upload Template Library-->
         <div class="flex-grow-1 d-flex flex-column align-items-center upload-template-library">
           <h2 class="mt-auto">Upload template library</h2>
-          <div class="d-flex justify-content-center align-items-center mb-auto card card--upload">
+
+          <!-- card Upload-->
+          <div class="d-flex justify-content-center align-items-center mb-auto card--upload">
             <Toast/>
             <FileUpload name="demo[]" url="/api/upload" @upload="onTemplatedUpload($event)" :multiple="false"
                         accept="/*" :maxFileSize="1000000" @select="onSelectedFiles">
@@ -169,7 +173,7 @@ const cities = ref([
                   <h5>Pending</h5>
                   <div class="d-flex flex-wrap p-0 sm:p-5 gap-5">
                     <div v-for="(file, index) of files" :key="file.name + file.type + file.size"
-                         class="card m-0 px-6 flex flex-column border-1 surface-border align-items-center gap-3">
+                         class=" m-0 px-6 flex flex-column border-1 surface-border align-items-center gap-3">
                       <div>
                         <img role="presentation" :alt="file.name" :src="file.objectURL" width="100" height="50"/>
                       </div>
@@ -186,7 +190,7 @@ const cities = ref([
                   <h5>Completed</h5>
                   <div class="d-flex flex-wrap p-0 sm:p-5 gap-5">
                     <div v-for="(file, index) of uploadedFiles" :key="file.name + file.type + file.size"
-                         class="card m-0 px-6 d-flex flex-column border-1 surface-border align-items-center gap-3">
+                         class="m-0 px-6 d-flex flex-column border-1 surface-border align-items-center gap-3">
                       <div>
                         <img role="presentation" :alt="file.name" :src="file.objectURL" width="100" height="50"/>
                       </div>
@@ -228,9 +232,44 @@ const cities = ref([
                 </div>
               </template>
             </FileUpload>
+
           </div>
-          <div class="upload-template-library__bottom-btn-area d-flex justify-content-end w-100 p-5">
+          <!--/ card Upload-->
+
+          <div class="mb-auto d-flex flex-column align-items-center">
+            <h2 class="mb-5">Select content</h2>
+            <svg class= "mb-4" xmlns="http://www.w3.org/2000/svg" width="45" height="44" viewBox="0 0 45 44" fill="none">
+              <g clip-path="url(#clip0_283_21554)">
+                <path d="M6 9.16667C6 8.19421 6.38631 7.26157 7.07394 6.57394C7.76157 5.88631 8.69421 5.5 9.66667 5.5H35.3333C36.3058 5.5 37.2384 5.88631 37.9261 6.57394C38.6137 7.26157 39 8.19421 39 9.16667V34.8333C39 35.8058 38.6137 36.7384 37.9261 37.4261C37.2384 38.1137 36.3058 38.5 35.3333 38.5H9.66667C8.69421 38.5 7.76157 38.1137 7.07394 37.4261C6.38631 36.7384 6 35.8058 6 34.8333V9.16667Z" fill="#0090DA" fill-opacity="0.1" stroke="#0090DA" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17 5.5L6 16.5" stroke="#0090DA" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M26.1663 5.5L13.333 18.3333" stroke="#0090DA" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M35.3333 5.5L22.5 18.3333" stroke="#0090DA" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M39.0003 11L31.667 18.3333" stroke="#0090DA" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6 18.3333H39" stroke="#0090DA" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M18.833 18.3333V38.4999" stroke="#0090DA" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_283_21554">
+                  <rect width="44" height="44" fill="white" transform="translate(0.5)"/>
+                </clipPath>
+              </defs>
+            </svg>
+            <div class="d-flex flex-column select select--with-radios">
+              <label class="mb-2">Select tab with content you would like to use.</label>
+              <Dropdown v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City" class="w-100">
+                <template #option="slotProps" class="">
+                  <div class="flex align-items-center select__radio-area">
+                    <div>{{ slotProps.option.name }}</div>
+                  </div>
+                </template>
+              </Dropdown>
+            </div>
+          </div>
+
+
+          <div class="upload-template-library__bottom-btn-area d-flex justify-content- w-100 p-5">
             <!-- Remove disabled and the button color is blue-->
+            <button class="btn btn-shadow me-auto">Back</button>
             <button class="btn btn-primary" disabled>Proceed</button>
           </div>
         </div>
