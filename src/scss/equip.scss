@@ -9,7 +9,10 @@
   --Grey-scale-1000: #696969;
   --bs-danger-rgb: 220, 8, 8;
 
+
 }
+
+
 
 .equip {
   font-family: Arial, sans-serif;
@@ -277,28 +280,35 @@
   }
 
 
-  .file-details {
-    border: solid 1px var(--Grey-scale-400);
-    border-radius: 4px;
-    width: 100%;
 
-    &__title {
-      font-size: 20px;
-      font-weight: 700;
-    }
+}
 
-    &__size {
-      color: var(--Grey-scale-1000);
-      font-size: 14px;
-    }
+.file-details {
+  border: solid 1px var(--Grey-scale-400);
+  border-radius: 4px;
+  width: 100%;
 
-    &__progress-bar {
-      height: 4px;
-    }
+  &__title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  &__size {
+    color: var(--Grey-scale-1000);
+    font-size: 14px;
+  }
+
+  &__progress-bar {
+    height: 4px;
   }
 }
 
 .modal {
+  .modal-xl{
+    @include media-breakpoint-up(lg){
+      --bs-modal-width: 628px;
+    }
+  }
   .modal-content {
     box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.25);
   }
@@ -307,6 +317,18 @@
     .btn-close {
       --bs-btn-close-opacity: 1;
     }
+
+  }
+  .btn{
+    font-weight: 500;
+  }
+  .btn-outline-secondary{
+    --bs-btn-border-color:transparent;
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.2);
+    --bs-btn-disabled-bg: var(--Grey-scale-200);
+    --bs-btn-disabled-border-color: transparent;
+    --bs-btn-disabled-color: var(--Grey-scale-1000);
+    --bs-btn-color: var(--Grey-scale-1200);
   }
 }
 

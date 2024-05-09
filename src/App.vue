@@ -30,12 +30,12 @@ const lessons = ref();
 
 <template>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- Abort Modal -->
+  <div class="modal fade" id="abortModal" tabindex="-1" aria-labelledby="abortModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header bg-primary text-white">
-          <h5 class="modal-title" id="exampleModalLabel">Abort lesson generation process?</h5>
+          <h5 class="modal-title" id="abortModalLabel">Abort lesson generation process?</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -49,12 +49,12 @@ const lessons = ref();
     </div>
   </div>
 
-  <!-- Modal -->
+  <!-- Back Modal -->
   <div class="modal fade" id="backModal" tabindex="-1" aria-labelledby="backModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header bg-primary text-white">
-          <h5 class="modal-title" id="exampleModalLabel">Go back to the previous step?</h5>
+          <h5 class="modal-title" id="abortModalLabel">Go back to the previous step?</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -68,6 +68,93 @@ const lessons = ref();
     </div>
   </div>
 
+  <!-- Preview Modal -->
+  <div class="modal fade" id="previewLessonModal" tabindex="-1" aria-labelledby="previewLessonLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="abortModalLabel">Lesson preview</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Please download lesson and review.</p>
+          <!--File Details-->
+          <div class="px-3 overflow-hidden file-details">
+            <ProgressBar :value="totalSizePercent" :showValue="true"
+                         :class="['d-block w-100 mb-3 file-details__progress-bar', { 'exceeded-progress-bar': totalSizePercent > 100 }]">
+              <!-- <span class="white-space-nowrap">{{ totalSize }}B / 1Mb</span>-->
+            </ProgressBar>
+            <div class="d-flex mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="41" height="41" viewBox="0 0 41 41" fill="none">
+                <mask id="mask0_364_144" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="41"
+                      height="41">
+                  <rect x="0.5" y="0.5" width="40" height="40" fill="#D9D9D9"/>
+                </mask>
+                <g mask="url(#mask0_364_144)">
+                  <path
+                      d="M14.25 30.0833H26.7499V27.5834H14.25V30.0833ZM14.25 23.4167H26.7499V20.9168H14.25V23.4167ZM11.0128 36.3333C10.1709 36.3333 9.45833 36.0417 8.875 35.4583C8.29167 34.875 8 34.1624 8 33.3205V7.67958C8 6.83769 8.29167 6.12508 8.875 5.54175C9.45833 4.95841 10.1709 4.66675 11.0128 4.66675H24.25L32.9999 13.4167V33.3205C32.9999 34.1624 32.7083 34.875 32.1249 35.4583C31.5416 36.0417 30.829 36.3333 29.9871 36.3333H11.0128ZM23 14.6667V7.16671H11.0128C10.8846 7.16671 10.7671 7.22012 10.6602 7.32696C10.5534 7.43382 10.5 7.55136 10.5 7.67958V33.3205C10.5 33.4487 10.5534 33.5663 10.6602 33.6731C10.7671 33.78 10.8846 33.8334 11.0128 33.8334H29.9871C30.1153 33.8334 30.2328 33.78 30.3397 33.6731C30.4465 33.5663 30.5 33.4487 30.5 33.3205V14.6667H23Z"
+                      fill="#696969"/>
+                </g>
+              </svg>
+              <div class="ms-2">
+                <h4 class="file-details__title">Level C Reading V3_Vocabulary.doc</h4>
+                <div class="file-details__size">32 KB</div>
+              </div>
+              <button class="btn btn-light ms-auto fw-bold" style="--bs-btn-bg:transparent; --bs-btn-border-color:transparent; --bs-btn-padding-x:0.65rem; --bs-btn-color: #0090DA;">DOWNLOAD</button>
+            </div>
+          </div>
+          <!--/File Details-->
+        </div>
+        <div class="modal-footer justify-content-end">
+          <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#stepBackModal">Go to a previous step</button>
+          <button type="button" class="btn btn-primary" style="--bs-btn-disabled-bg: #BDBDBD; --bs-btn-disabled-border-color:transparent;" >Continue generating</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step Back Modal -->
+  <div class="modal fade" id="stepBackModal" tabindex="-1" aria-labelledby="stepBackLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="abortModalLabel">Lesson preview</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Select the step you want to return to.</p>
+          <div class="form-check mb-3">
+            <input class="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Upload template
+            </label>
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+              Upload spreadsheet
+            </label>
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+            <label class="form-check-label" for="flexRadioDefault3">
+              Select content
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
+            <label class="form-check-label" for="flexRadioDefault4">
+              Select lessons
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-end">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Back</button>
+          <button type="button" class="btn btn-primary" style="--bs-btn-disabled-bg: #BDBDBD; --bs-btn-disabled-border-color:transparent;" >Proceed</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="equip__sidebar d-flex flex-column align-items-center pt-4">
     <a href="#" class="equip__sidebar__logo">
@@ -183,7 +270,7 @@ const lessons = ref();
                       </div>
                       <button class="p-button p-component p-button-icon-only p-button-equip-closebtn border-0 ms-auto"
                               type="button" aria-label="Cancel" data-pc-name="button" data-pc-section="root"
-                              data-p-severity="equip-closebtn" data-pd-ripple="true" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                              data-p-severity="equip-closebtn" data-pd-ripple="true" data-bs-toggle="modal" data-bs-target="#abortModal">
                         <span class="p-button-icon pi pi-times" data-pc-section="icon"></span><span class="p-button-label"
                                                                                                     data-pc-section="label">&nbsp;</span>
                       </button>
@@ -347,7 +434,7 @@ const lessons = ref();
                     <label for="ingredient1" class=""> Lesson 1 </label>
                   </div>
                   <InlineMessage severity="success" class="mx-auto">Ready</InlineMessage>
-                  <button class="btn btn-primary">Preview</button>
+                  <button class="btn btn-primary" data-pd-ripple="true" data-bs-toggle="modal" data-bs-target="#previewLessonModal">Preview</button>
                 </div>
                 <div class="d-flex align-items-center justify-content-between lessons-area__item">
                   <div class="d-flex align-items-center">
@@ -367,11 +454,25 @@ const lessons = ref();
           </div>
           <!-- Select Lessons -->
 
+          <!-- Success screen  -->
+          <div class="d-flex flex-column h-100 w-100 justify-content-center align-items-center">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle opacity="0.2" cx="40" cy="40" r="40" fill="#009A4A"/>
+              <path d="M28 40L37 49L54 32" stroke="#009A4A" stroke-width="4"/>
+            </svg>
+            <h2>All lessons generated successfully</h2>
+            <p>You can download lessons now.</p>
+            <button class="btn btn-primary">Download .zip</button>
+          </div>
+
+          <!-- Success screen  -->
+
+
           <!--Bottom Buttons-->
           <div class="content-area__bottom-btn-area d-flex  w-100 p-5">
             <!-- Remove disabled and the button color is blue-->
             <button class="btn btn-shadow" data-pd-ripple="true" data-bs-toggle="modal" data-bs-target="#backModal">Back</button>
-            <button class="btn btn-shadow ms-3" data-pd-ripple="true" data-bs-toggle="modal" data-bs-target="#backModal">Stop generating</button>
+            <button class="btn btn-shadow ms-3" data-pd-ripple="true" data-bs-toggle="modal" data-bs-target="#abortModal">Stop generating</button>
             <button class="btn btn-primary ms-auto" disabled>Proceed</button>
           </div>
           <!--/Bottom Buttons-->
